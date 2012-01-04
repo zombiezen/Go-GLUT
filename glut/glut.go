@@ -17,7 +17,7 @@ import "C"
 import "os"
 import "unsafe"
 
-import "gl"
+import "github.com/zombiezen/Go-OpenGL/gl"
 
 type (
 	Window     C.int
