@@ -8,6 +8,8 @@ package glut
 // #else
 // # include <GL/glut.h>
 // #endif
+// #cgo linux LDFLAGS: -lglut
+// #cgo darwin LDFLAGS: -framework GLUT
 // #include <stdlib.h>
 // #include "support.h"
 import "C"
