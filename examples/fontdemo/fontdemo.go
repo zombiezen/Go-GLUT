@@ -8,9 +8,9 @@
 
 package main
 
-import "gl"
-import "gl/glu"
-import "glut"
+import "github.com/zombiezen/Go-OpenGL/gl"
+import "github.com/zombiezen/Go-OpenGL/glu"
+import "github.com/zombiezen/Go-GLUT/glut"
 
 func bitmap_output(x, y float32, str string, font glut.BitmapFont) {
 	gl.RasterPos2f(x, y)

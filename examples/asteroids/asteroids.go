@@ -11,8 +11,8 @@ package main
 import "math"
 import "os"
 
-import "gl"
-import "glut"
+import "github.com/zombiezen/Go-OpenGL/gl"
+import "github.com/zombiezen/Go-GLUT/glut"
 
 var (
 	angle                         float32

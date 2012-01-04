@@ -17,8 +17,8 @@
 
 package main
 
-import "gl"
-import "glut"
+import "github.com/zombiezen/Go-OpenGL/gl"
+import "github.com/zombiezen/Go-GLUT/glut"
 
 func reshape(w, h int) {
 	/* Because Gil specified "screen coordinates" (presumably with an

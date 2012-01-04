@@ -3,4 +3,7 @@
 **/_obj/
 **_cgo*
 **.cgo*.*
+examples/asteroids/asteroids
+examples/fontdemo/fontdemo
+examples/simple/simple
 
