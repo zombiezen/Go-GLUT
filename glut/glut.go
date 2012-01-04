@@ -254,7 +254,6 @@ var (
 
 var gameWindow *Window
 
-
 // - Initialization
 
 func Init() {
@@ -302,7 +301,7 @@ func registerWindow(w Window) {
 }
 
 func unregisterWindow(w Window) {
-	winFuncs[w] = nil, false
+	delete(winFuncs, w)
 }
 
 func CreateWindow(title string) (w Window) {
@@ -455,7 +454,7 @@ func GetMenu() Menu {
 
 func (m Menu) Destroy() {
 	C.glutDestroyMenu(C.int(m))
-	menuFuncs[m] = nil, false
+	delete(menuFuncs, m)
 }
 
 func AddMenuEntry(name string, value int) {
