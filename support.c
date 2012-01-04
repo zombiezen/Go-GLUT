@@ -1,40 +1,50 @@
-// DEFINE_FUNCS is needed because I'm unsure how to pass C function pointers in Go.
-#define DEFINE_FUNCS(x, y, ...) \
-extern void go_##y(__VA_ARGS__); \
-void set##x##Func() { glut##x##Func(go_##y); } \
+#include "support.h"
+
+#include <stdlib.h>
+#include <sys/types.h>
+#include "_cgo_export.h"
+
+#ifdef __APPLE__
+# include <GLUT/glut.h>
+#else
+# include <GL/glut.h>
+#endif
+
+#define DEFINE_FUNCS(x, ...) \
+void set##x##Func() { glut##x##Func(internal##x##Func); } \
 void clear##x##Func() { glut##x##Func(NULL); } \
 
-DEFINE_FUNCS(Display, a)
-DEFINE_FUNCS(OverlayDisplay, b)
-DEFINE_FUNCS(Reshape, c, int width, int height)
-DEFINE_FUNCS(Keyboard, d, unsigned char key, int x, int y)
-DEFINE_FUNCS(Mouse, e, int button, int state, int x, int y)
-DEFINE_FUNCS(Motion, f, int x, int y)
-DEFINE_FUNCS(PassiveMotion, g, int x, int y)
-DEFINE_FUNCS(Visibility, h, int state)
-DEFINE_FUNCS(Entry, i, int state)
-DEFINE_FUNCS(Special, j, int key, int x, int y)
-DEFINE_FUNCS(SpaceballMotion, k, int x, int y, int z)
-DEFINE_FUNCS(SpaceballRotate, l, int x, int y, int z)
-DEFINE_FUNCS(SpaceballButton, m, int button, int state)
+DEFINE_FUNCS(Display)
+DEFINE_FUNCS(OverlayDisplay)
+DEFINE_FUNCS(Reshape, int width, int height)
+DEFINE_FUNCS(Keyboard, unsigned char key, int x, int y)
+DEFINE_FUNCS(Mouse, int button, int state, int x, int y)
+DEFINE_FUNCS(Motion, int x, int y)
+DEFINE_FUNCS(PassiveMotion, int x, int y)
+DEFINE_FUNCS(Visibility, int state)
+DEFINE_FUNCS(Entry, int state)
+DEFINE_FUNCS(Special, int key, int x, int y)
+DEFINE_FUNCS(SpaceballMotion, int x, int y, int z)
+DEFINE_FUNCS(SpaceballRotate, int x, int y, int z)
+DEFINE_FUNCS(SpaceballButton, int button, int state)
 /* just in case you're on an SGI box.. :) */
-DEFINE_FUNCS(ButtonBox, n, int button, int state)
-DEFINE_FUNCS(Dials, o, int dial, int value)
-DEFINE_FUNCS(TabletMotion, p, int x, int y)
-DEFINE_FUNCS(TabletButton, q, int button, int state, int x, int y)
-DEFINE_FUNCS(MenuStatus, r, int status, int x, int y)
-DEFINE_FUNCS(Idle, s)
-DEFINE_FUNCS(KeyboardUp, u, unsigned char key, int x, int y)
-DEFINE_FUNCS(SpecialUp, v, int key, int x, int y)
+DEFINE_FUNCS(ButtonBox, int button, int state)
+DEFINE_FUNCS(Dials, int dial, int value)
+DEFINE_FUNCS(TabletMotion, int x, int y)
+DEFINE_FUNCS(TabletButton, int button, int state, int x, int y)
+DEFINE_FUNCS(MenuStatus, int status, int x, int y)
+DEFINE_FUNCS(Idle)
+DEFINE_FUNCS(KeyboardUp, unsigned char key, int x, int y)
+DEFINE_FUNCS(SpecialUp, int key, int x, int y)
 
 // glutCreateMenu callback
-extern void go_t(int value); // 
-int goCreateMenu() { return glutCreateMenu(go_t); }
+extern void internalMenuFunc(int value); // 
+int goCreateMenu() { return glutCreateMenu(internalMenuFunc); }
 int goCreateMenuWithoutCallback() { return glutCreateMenu(NULL); }
 
 // glutJoystickFunc callback
-extern void go_w(unsigned int buttonMask, int x, int y, int z);
-void setJoystickFunc(int pollInterval) { glutJoystickFunc(go_w, pollInterval); }
+extern void internalJoystickFunc(unsigned int buttonMask, int x, int y, int z);
+void setJoystickFunc(int pollInterval) { glutJoystickFunc(internalJoystickFunc, pollInterval); }
 void clearJoystickFunc(int pollInterval) { glutJoystickFunc(NULL, pollInterval); }
 
 // cgo does not correctly interpret the GLUT font constants, so we try a different approach.

@@ -9,6 +9,9 @@ TARG=glut
 CGOFILES=\
 	glut.go\
 
+CGO_OFILES=\
+	support.o
+
 ifeq ($(GOOS),darwin)
 CGO_LDFLAGS=-framework GLUT
 else

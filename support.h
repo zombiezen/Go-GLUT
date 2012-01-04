@@ -1,0 +1,43 @@
+/* support.h */
+
+#define DECLARE_FUNCS(x, ...) \
+void set##x##Func();  \
+void clear##x##Func(); \
+
+DECLARE_FUNCS(Display)
+DECLARE_FUNCS(OverlayDisplay)
+DECLARE_FUNCS(Reshape)
+DECLARE_FUNCS(Keyboard)
+DECLARE_FUNCS(Mouse)
+DECLARE_FUNCS(Motion)
+DECLARE_FUNCS(PassiveMotion)
+DECLARE_FUNCS(Visibility)
+DECLARE_FUNCS(Entry)
+DECLARE_FUNCS(Special)
+DECLARE_FUNCS(SpaceballMotion)
+DECLARE_FUNCS(SpaceballRotate)
+DECLARE_FUNCS(SpaceballButton)
+DECLARE_FUNCS(ButtonBox)
+DECLARE_FUNCS(Dials)
+DECLARE_FUNCS(TabletMotion)
+DECLARE_FUNCS(TabletButton)
+DECLARE_FUNCS(MenuStatus)
+DECLARE_FUNCS(Idle)
+DECLARE_FUNCS(KeyboardUp)
+DECLARE_FUNCS(SpecialUp)
+
+int goCreateMenu();
+int goCreateMenuWithoutCallback();
+void setJoystickFunc(int pollInterval);
+void clearJoystickFunc(int pollInterval);
+
+#define DECLARE_FONT(x) void* go_##x();
+DECLARE_FONT(GLUT_STROKE_ROMAN)
+DECLARE_FONT(GLUT_STROKE_MONO_ROMAN)
+DECLARE_FONT(GLUT_BITMAP_9_BY_15)
+DECLARE_FONT(GLUT_BITMAP_8_BY_13)
+DECLARE_FONT(GLUT_BITMAP_TIMES_ROMAN_10)
+DECLARE_FONT(GLUT_BITMAP_TIMES_ROMAN_24)
+DECLARE_FONT(GLUT_BITMAP_HELVETICA_10)
+DECLARE_FONT(GLUT_BITMAP_HELVETICA_12)
+DECLARE_FONT(GLUT_BITMAP_HELVETICA_18)

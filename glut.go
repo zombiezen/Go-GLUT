@@ -9,7 +9,7 @@ package glut
 // # include <GL/glut.h>
 // #endif
 // #include <stdlib.h>
-// #include "support.c"
+// #include "support.h"
 import "C"
 
 import "os"
@@ -944,117 +944,117 @@ func GameModeGet(mode gl.GLenum) int {
 
 // The alphabetical export names work around a cgo bug on Mac OS X.
 
-//export go_a
+//export internalDisplayFunc
 func internalDisplayFunc() {
 	winFuncs[GetWindow()].display()
 }
 
-//export go_b
+//export internalOverlayDisplayFunc
 func internalOverlayDisplayFunc() {
 	winFuncs[GetWindow()].overlayDisplay()
 }
 
-//export go_c
+//export internalReshapeFunc
 func internalReshapeFunc(width, height int) {
 	winFuncs[GetWindow()].reshape(width, height)
 }
 
-//export go_d
+//export internalKeyboardFunc
 func internalKeyboardFunc(key uint8, x, y int) {
 	winFuncs[GetWindow()].keyboard(key, x, y)
 }
 
-//export go_e
+//export internalMouseFunc
 func internalMouseFunc(button, state, x, y int) {
 	winFuncs[GetWindow()].mouse(button, state, x, y)
 }
 
-//export go_f
+//export internalMotionFunc
 func internalMotionFunc(x, y int) {
 	winFuncs[GetWindow()].motion(x, y)
 }
 
-//export go_g
+//export internalPassiveMotionFunc
 func internalPassiveMotionFunc(x, y int) {
 	winFuncs[GetWindow()].passiveMotion(x, y)
 }
 
-//export go_h
+//export internalVisibilityFunc
 func internalVisibilityFunc(state int) {
 	winFuncs[GetWindow()].visibility(state)
 }
 
-//export go_i
+//export internalEntryFunc
 func internalEntryFunc(state int) {
 	winFuncs[GetWindow()].entry(state)
 }
 
-//export go_j
+//export internalSpecialFunc
 func internalSpecialFunc(key, x, y int) {
 	winFuncs[GetWindow()].special(key, x, y)
 }
 
-//export go_k
+//export internalSpaceballMotionFunc
 func internalSpaceballMotionFunc(x, y, z int) {
 	winFuncs[GetWindow()].spaceballMotion(x, y, z)
 }
 
-//export go_l
+//export internalSpaceballRotateFunc
 func internalSpaceballRotateFunc(x, y, z int) {
 	winFuncs[GetWindow()].spaceballRotate(x, y, z)
 }
 
-//export go_m
+//export internalSpaceballButtonFunc
 func internalSpaceballButtonFunc(button, state int) {
 	winFuncs[GetWindow()].spaceballButton(button, state)
 }
 
-//export go_n
+//export internalButtonBoxFunc
 func internalButtonBoxFunc(button, state int) {
 	winFuncs[GetWindow()].buttonBox(button, state)
 }
 
-//export go_o
+//export internalDialsFunc
 func internalDialsFunc(dial, value int) {
 	winFuncs[GetWindow()].dials(dial, value)
 }
 
-//export go_p
+//export internalTabletMotionFunc
 func internalTabletMotionFunc(x, y int) {
 	winFuncs[GetWindow()].tabletMotion(x, y)
 }
 
-//export go_q
+//export internalTabletButtonFunc
 func internalTabletButtonFunc(button, state, x, y int) {
 	winFuncs[GetWindow()].tabletButton(button, state, x, y)
 }
 
-//export go_r
+//export internalMenuStatusFunc
 func internalMenuStatusFunc(status, x, y int) {
 	winFuncs[GetWindow()].menuStatus(status, x, y)
 }
 
-//export go_s
+//export internalIdleFunc
 func internalIdleFunc() {
 	idleFunc()
 }
 
-//export go_t
+//export internalMenuFunc
 func internalMenuFunc(state int) {
 	menuFuncs[GetMenu()](state)
 }
 
-//export go_u
+//export internalKeyboardUpFunc
 func internalKeyboardUpFunc(key uint8, x, y int) {
 	winFuncs[GetWindow()].keyboardUp(key, x, y)
 }
 
-//export go_v
+//export internalSpecialUpFunc
 func internalSpecialUpFunc(key, x, y int) {
 	winFuncs[GetWindow()].specialUp(key, x, y)
 }
 
-//export go_w
+//export internalJoystickFunc
 func internalJoystickFunc(buttonMask uint, x, y, z int) {
 	winFuncs[GetWindow()].joystick(buttonMask, x, y, z)
 }
