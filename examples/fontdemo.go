@@ -69,7 +69,6 @@ func reshape(w, h int) {
 	gl.MatrixMode(gl.MODELVIEW)
 }
 
-
 func main() {
 	glut.Init()
 	glut.InitDisplayMode(glut.SINGLE | glut.RGB)
